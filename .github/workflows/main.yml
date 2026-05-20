@@ -1,0 +1,33 @@
+name: Práctica Automática de Python
+
+# El flujo se activará cada vez que hagamos un 'push' (subir cambios) a la rama principal
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch: # Esto permite activar el botón "Run workflow" manualmente desde la web
+
+jobs:
+  mi-servidor-virtual:
+    # Elegimos el sistema operativo de la máquina en la nube
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Clonar el código del repositorio dentro de la máquina virtual
+    - name: 1. Descargando el código del repositorio
+      uses: actions/checkout@v4
+
+    # Paso 2: Instalar y preparar el entorno de Python
+    - name: 2. Configurando Python en el servidor
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # Paso 3: Instalar dependencias externas (demostración de PIP)
+    - name: 3. Instalando librerías externas (Requests)
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    # Paso 4: Ejecutar nuestro script y ver la magia
+    - name: 4. Ejecutando el script de análisis
+      run: python script.py
