@@ -1,0 +1,44 @@
+name: Actualizar Resultados de LaLiga
+
+# Configuración de los disparadores (Triggers)
+on:
+  schedule:
+    # Se ejecuta de forma automática todos los lunes a las 09:00 UTC (10:00 o 11:00 hora de España)
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    # Esto te permite activar la acción manualmente desde la web de GitHub cuando quieras
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Descargar el código de tu repositorio
+    - name: Descargar el repositorio
+      uses: actions/checkout@v4
+
+    # 2. Configurar el entorno de Python en la máquina virtual
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # 3. Instalar las dependencias necesarias
+    - name: Instalar dependencias
+      run: |
+        pip install playwright pyyaml
+        playwright install chromium
+
+    # 4. Ejecutar el script que extrae los datos de la web de LaLiga
+    - name: Ejecutar Scraper de LaLiga
+      run: python scraper_laliga.py
+
+    # 5. Guardar los cambios (el archivo YAML generado) de vuelta en tu repositorio
+    - name: Hacer Commit y Push del nuevo archivo YAML
+      run: |
+        git config --global user.name "GitHub Action Bot"
+        git config --global user.email "actions@github.com"
+        git add resultats_extrets.yaml
+        
+        # Solo hacemos commit si el archivo realmente ha cambiado (evita errores si no hay partidos nuevos)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 auto: Actualizados los resultados de LaLiga" && git push)
