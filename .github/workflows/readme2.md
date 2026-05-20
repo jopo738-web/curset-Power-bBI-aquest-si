@@ -24,4 +24,4 @@ jobs:
         pip install requests beautifulsoup4
 
     - name: 4. Ejecutando Scraper en Vivo
-      run: python script.py
+      run: python joanejecuta2.py
