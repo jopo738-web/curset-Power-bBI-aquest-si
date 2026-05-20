@@ -30,4 +30,4 @@ jobs:
 
     # Paso 4: Ejecutar nuestro script y ver la magia
     - name: 4. Ejecutando el script de análisis
-      run: python script.py
+      run: python joanejecuta.py
