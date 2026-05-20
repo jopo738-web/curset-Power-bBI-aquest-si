@@ -1,0 +1,25 @@
+# Nombre de la Action (opcional, pero recomendado)
+name: Mi Primera GitHub Action
+
+# ¿Cuándo se va a ejecutar? (Eventos)
+on:
+  push:
+    branches: [ main ] # Se ejecuta cuando subes cambios a la rama 'main'
+  pull_request:
+    branches: [ main ] # Se ejecuta cuando abres un PR hacia 'main'
+
+# ¿Qué va a hacer la Action? (Trabajos)
+jobs:
+  saludar:
+    # El sistema operativo virtual donde corre la acción
+    runs-on: ubuntu-latest
+
+    # Los pasos que va a seguir este trabajo
+    steps:
+      # Paso 1: Descargar el código del repositorio en la máquina virtual
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      # Paso 2: Ejecutar un comando en la terminal
+      - name: Ejecutar un saludo
+        run: echo "¡Hola mundo desde GitHub Actions!"
