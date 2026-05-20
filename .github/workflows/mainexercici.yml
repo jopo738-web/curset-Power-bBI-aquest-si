@@ -1,0 +1,39 @@
+competicio: "LaLiga EA Sports"
+temporada: "2025-2026"
+jornada: 37
+partits:
+  - id: 1
+    estat: "Finalitzat"
+    data: "2026-05-17"
+    hora: "21:15"
+    estadi: "Spotify Camp Nou"
+    equip_local:
+      nom: "FC Barcelona"
+      gols: 3
+    equip_visitant:
+      nom: "Real Betis"
+      gols: 1
+
+  - id: 2
+    estat: "Finalitzat"
+    data: "2026-05-17"
+    hora: "19:00"
+    estadi: "Ramón Sánchez-Pizjuán"
+    equip_local:
+      nom: "Sevilla FC"
+      gols: 0
+    equip_visitant:
+      nom: "Real Madrid"
+      gols: 1
+
+  - id: 3
+    estat: "Planificat"
+    data: "2026-05-23"
+    hora: "21:00"
+    estadi: "Mestalla"
+    equip_local:
+      nom: "Valencia CF"
+      gols: null
+    equip_visitant:
+      nom: "FC Barcelona"
+      gols: null
